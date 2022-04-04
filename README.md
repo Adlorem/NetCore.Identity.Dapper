@@ -21,3 +21,5 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 ```
 
 You are ready to go. Keep in mind to replace IdentityUser with in this case example ApplicationUser when using stores.
+
+TODO: Unit testing.
