@@ -1,6 +1,6 @@
 Under development. This library aims to replace Identity Entity Framework database handling with Dapper. Example project uses Net Core, but works fine with Blazor.
 
-In your web application you have to add default model for identity user. For example:
+In your web application create default model for identity user. For example:
 
 ```csharp
     public class ApplicationUser : IdentityUser , IApplicationUser<ApplicationUser>
