@@ -6,7 +6,6 @@ namespace DapperIdentityNetCoreExample.Models
     public class ApplicationUser : IdentityUser , IDapperIdentityUser<ApplicationUser>
     {
         // Custom properties....
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+ 
     }
 }
