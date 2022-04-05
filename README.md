@@ -15,6 +15,8 @@ Make sure your database table [AspNetUsers] can handle custom properties. You ca
 In your web application Program.cs replace/add following default identity to use dapper istead of Entity Framework.
 
 ```csharp
+using NetCore.Identity.Dapper.Interfaces;
+
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<ApplicationRole>()
     .AddDapperIdentityStores<ApplicationUser>(options => options.ConnectionString = connectionString);
