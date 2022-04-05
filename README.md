@@ -3,11 +3,9 @@ Under development. This library aims to replace Identity Entity Framework databa
 In your web application create default model for identity user. For example:
 
 ```csharp
-    public class ApplicationUser : IdentityUser , IApplicationUser<ApplicationUser>
+   public class ApplicationUser : IdentityUser, IDapperIdentityUser<ApplicationUser>
     {
-        // Custom properties examples
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        // Add custom properties here
     }
 ```
 Make sure your database table [AspNetUsers] can handle custom properties. You can use Entity Framework to update your database.
