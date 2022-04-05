@@ -4,7 +4,7 @@
     /// Interface for user identity.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IApplicationUser<T> : IUser where T : class, IUser<string>
+    public interface IDapperIdentityUser<T> : IUser where T : class, IUser<string>
     {
         string Email { get; set; }
         bool EmailConfirmed { get; set; }

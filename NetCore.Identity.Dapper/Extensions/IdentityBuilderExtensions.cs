@@ -19,7 +19,7 @@ namespace NetCore.Identity.Dapper.Extensions
         /// <param name="builder">Helper functions for configuring identity services.</param>
         /// <returns>The <see cref="IdentityBuilder"/> instance this method extends.</returns>
         public static IdentityBuilder AddDapperIdentityStores<TUser>(this IdentityBuilder builder, Action<DbProvider> dbProviderOptionsAction = null)
-            where TUser : class, IApplicationUser<TUser>
+            where TUser : class, IDapperIdentityUser<TUser>
         {
             AddDefaultStores<TUser>(builder.Services, builder.UserType, builder.RoleType);
             var options = GetDefaultOptions();
@@ -37,7 +37,7 @@ namespace NetCore.Identity.Dapper.Extensions
         /// <param name="userType"></param>
         /// <param name="roleType"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        private static void AddDefaultStores<TUser>(IServiceCollection services, Type userType, Type roleType) where TUser : class, IApplicationUser<TUser>
+        private static void AddDefaultStores<TUser>(IServiceCollection services, Type userType, Type roleType) where TUser : class, IDapperIdentityUser<TUser>
         {
 
             if (roleType != typeof(ApplicationRole))

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NetCore.Identity.Dapper.StoreProvider
 {
-    internal class UserRolesProvider<TUser> where TUser : class, IApplicationUser<TUser>
+    internal class UserRolesProvider<TUser> where TUser : class, IDapperIdentityUser<TUser>
     {
         private readonly IDatabaseConnectionFactory _databaseConnectionFactory;
 

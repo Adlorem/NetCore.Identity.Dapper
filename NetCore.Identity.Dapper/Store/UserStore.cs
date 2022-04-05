@@ -28,7 +28,7 @@ namespace NetCore.Identity.Dapper
                                      IUserAuthenticationTokenStore<TUser>,
                                      IUserStore<TUser>,
                                      IUserAuthenticatorKeyStore<TUser>
-        where TUser : class, IApplicationUser<TUser>
+        where TUser : class, IDapperIdentityUser<TUser>
     {
         private readonly UsersProvider<TUser> _usersTable;
         private readonly UserRolesProvider<TUser> _usersRolesTable;
