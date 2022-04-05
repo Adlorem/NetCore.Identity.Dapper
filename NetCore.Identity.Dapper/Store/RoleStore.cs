@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NetCore.Identity.Dapper
+namespace NetCore.Identity.Dapper.Store
 {
     /// <summary>
     /// Dapper based implementation.
@@ -52,7 +52,7 @@ namespace NetCore.Identity.Dapper
             cancellationToken.ThrowIfCancellationRequested();
             if (role == null)
             {
-                throw new ArgumentNullException(nameof (role));
+                throw new ArgumentNullException(nameof(role));
             }
             return await _roleStoreProvider.DeleteAsync(role);
         }
@@ -62,7 +62,7 @@ namespace NetCore.Identity.Dapper
             cancellationToken.ThrowIfCancellationRequested();
             if (role == null)
             {
-                throw new ArgumentNullException (nameof(role));
+                throw new ArgumentNullException(nameof(role));
             }
             return Task.FromResult(role.Id);
         }
@@ -152,7 +152,7 @@ namespace NetCore.Identity.Dapper
             {
                 throw new ArgumentNullException(nameof(role));
             }
-            return  (await _claimStoreProvider.GetClaimsAsync(role.Id)).ToList();
+            return (await _claimStoreProvider.GetClaimsAsync(role.Id)).ToList();
         }
 
         public async Task AddClaimAsync(ApplicationRole role, Claim claim, CancellationToken cancellationToken = default)

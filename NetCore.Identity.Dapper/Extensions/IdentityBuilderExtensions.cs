@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
+using NetCore.Identity.Dapper.Store;
 
 namespace NetCore.Identity.Dapper.Extensions
 {

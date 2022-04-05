@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NetCore.Identity.Dapper
+namespace NetCore.Identity.Dapper.Store
 {
     /// <summary>
     /// Dapper based user store implementation.
@@ -47,7 +47,7 @@ namespace NetCore.Identity.Dapper
             _userTokensTable = new UserTokensProvider<TUser>(databaseConnectionFactory);
         }
 
- 
+
         public IQueryable<TUser> Users => Task.Run(() => _usersTable.GetAllUsers()).Result.AsQueryable();
 
         IQueryable<TUser> IQueryableUserStore<TUser>.Users => throw new NotImplementedException();
@@ -222,7 +222,7 @@ namespace NetCore.Identity.Dapper
             user.NormalizedEmail = normalizedEmail;
             return Task.CompletedTask;
         }
-    
+
 
         public async Task AddLoginAsync(TUser user, UserLoginInfo login, CancellationToken cancellationToken = default)
         {
@@ -266,7 +266,7 @@ namespace NetCore.Identity.Dapper
 
             if (login != null)
             {
-               await _usersLoginsTable.RemoveLoginAsync(user, login);
+                await _usersLoginsTable.RemoveLoginAsync(user, login);
             }
         }
 
@@ -416,7 +416,7 @@ namespace NetCore.Identity.Dapper
             }
             return Task.FromResult(user.SecurityStamp);
         }
-  
+
         public async Task<IList<Claim>> GetClaimsAsync(TUser user, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -500,7 +500,7 @@ namespace NetCore.Identity.Dapper
                 if (foundClaim != null)
                 {
                     await _usersClaimsTable.RemoveClaimAsync(user, foundClaim);
-                }              
+                }
             }
         }
 
@@ -687,7 +687,7 @@ namespace NetCore.Identity.Dapper
 
             if (!foundToken)
             {
-                await _userTokensTable.AddTokenAsync(user, 
+                await _userTokensTable.AddTokenAsync(user,
                     new UserToken { LoginProvider = loginProvider, Name = name, Value = value });
             }
         }
@@ -728,7 +728,7 @@ namespace NetCore.Identity.Dapper
             {
                 throw new ArgumentNullException(nameof(name));
             }
-            var userTokens =  (await _userTokensTable.GetTokensAsync(user.Id)).ToList();
+            var userTokens = (await _userTokensTable.GetTokensAsync(user.Id)).ToList();
             return userTokens.SingleOrDefault(x => x.LoginProvider == loginProvider && x.Name == name)?.Value;
         }
 
