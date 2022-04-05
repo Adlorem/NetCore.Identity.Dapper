@@ -739,7 +739,7 @@ namespace NetCore.Identity.Dapper
 
         public Task<string> GetAuthenticatorKeyAsync(TUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         protected virtual void Dispose(bool disposing)

@@ -1,4 +1,7 @@
-﻿namespace NetCore.Identity.Dapper.Interfaces
+﻿using NetCore.Identity.Dapper.Models;
+using System.Security.Claims;
+
+namespace NetCore.Identity.Dapper.Interfaces
 {
     /// <summary>
     /// Interface for user identity.

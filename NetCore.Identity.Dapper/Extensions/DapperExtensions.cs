@@ -25,7 +25,13 @@ namespace NetCore.Identity.Dapper.Extensions
             }
 
             var sb = new StringBuilder();
-            sb.Append($"INSERT INTO [{dbSchema}].[{tableName}] VALUES (");
+            sb.Append($"INSERT INTO [{dbSchema}].[{tableName}] (");
+            foreach (var property in model.GetType().GetProperties())
+            {
+                sb.Append($"[{property.Name}], ");
+            }
+            sb.Length -= 2;
+            sb.Append(") VALUES (");
             foreach (var property in model.GetType().GetProperties())
             {
                 sb.Append($"@{property.Name}, ");

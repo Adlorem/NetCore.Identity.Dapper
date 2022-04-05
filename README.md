@@ -3,7 +3,7 @@ Under development. This library aims to replace Identity Entity Framework databa
 In your web application create default model for identity user. For example:
 
 ```csharp
-    public class ApplicationUser : IdentityUser, IDapperIdentityUser<ApplicationUser>
+    public class ApplicationUser : IdentityUser , IApplicationUser<ApplicationUser>
     {
         // Custom properties examples
         public string FirstName { get; set; }
