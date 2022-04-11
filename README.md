@@ -20,6 +20,18 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddDapperIdentityStores<ApplicationUser>(options => options.ConnectionString = connectionString);
 ```
 
-You are ready to go. Keep in mind to replace IdentityUser with in this case example ApplicationUser when using stores.
+You are ready to go. Keep in mind to replace IdentityUser with (in this case example) ApplicationUser when using stores.
+
+Exaple how to configure security service in Minimal API .Net 6.0
+
+
+```csharp
+using NetCore.Identity.Dapper.Interfaces;
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddIdentity<User, ApplicationRole>()
+    .AddDapperIdentityStores<User>(options => options.ConnectionString = connectionString);
+```
 
 TODO: Unit testing.
