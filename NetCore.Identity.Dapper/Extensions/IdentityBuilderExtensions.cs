@@ -1,10 +1,8 @@
-﻿using NetCore.Identity.Dapper.Factory;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using NetCore.Identity.Dapper.Factory;
 using NetCore.Identity.Dapper.Interfaces;
 using NetCore.Identity.Dapper.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using System;
 using NetCore.Identity.Dapper.Store;
 
 namespace NetCore.Identity.Dapper.Extensions
@@ -30,6 +28,7 @@ namespace NetCore.Identity.Dapper.Extensions
 
             return builder;
         }
+
         /// <summary>
         /// Adds default stores to service.
         /// </summary>
@@ -45,8 +44,8 @@ namespace NetCore.Identity.Dapper.Extensions
             {
                 throw new InvalidOperationException($"{nameof(AddDapperIdentityStores)} can only be called with a role that is of type {nameof(ApplicationRole)}.");
             }
-            services.TryAddScoped<IUserStore<TUser>, UserStore<TUser>>();
-            services.TryAddScoped<IRoleStore<ApplicationRole>, RoleStore>();
+            services.AddScoped<IUserStore<TUser>, UserStore<TUser>>();
+            services.AddScoped<IRoleStore<ApplicationRole>, RoleStore>();
         }
 
         public static DbProvider GetDefaultOptions()

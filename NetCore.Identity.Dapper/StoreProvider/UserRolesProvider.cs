@@ -16,7 +16,7 @@ namespace NetCore.Identity.Dapper.StoreProvider
             _databaseConnectionFactory = databaseConnectionFactory;
         }
 
-        public async Task<IEnumerable<ApplicationRole>> GetRolesAsync(TUser user)
+        public async Task<IEnumerable<UserRole>> GetRolesAsync(TUser user)
         {
             var command = "SELECT r.Id AS RoleId, r.Name AS RoleName " +
                                    $"FROM [{_databaseConnectionFactory.DbSchema}].AspNetRoles AS r " +
@@ -25,7 +25,7 @@ namespace NetCore.Identity.Dapper.StoreProvider
 
             using (var sqlConnection = _databaseConnectionFactory.CreateConnection())
             {
-                return await sqlConnection.QueryAsync<ApplicationRole>(command, new
+                return await sqlConnection.QueryAsync<UserRole>(command, new
                 {
                     UserId = user.Id
                 });

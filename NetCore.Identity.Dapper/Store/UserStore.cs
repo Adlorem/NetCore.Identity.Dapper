@@ -47,7 +47,6 @@ namespace NetCore.Identity.Dapper.Store
             _userTokensTable = new UserTokensProvider<TUser>(databaseConnectionFactory);
         }
 
-
         public IQueryable<TUser> Users => Task.Run(() => _usersTable.GetAllUsers()).Result.AsQueryable();
 
         IQueryable<TUser> IQueryableUserStore<TUser>.Users => throw new NotImplementedException();
@@ -644,7 +643,7 @@ namespace NetCore.Identity.Dapper.Store
             }
             var roles = await _usersRolesTable.GetRolesAsync(user);
 
-            return roles.Select(x => x.Name).ToList();
+            return roles.Select(x => x.RoleName).ToList();
         }
 
         public async Task<bool> IsInRoleAsync(TUser user, string roleName, CancellationToken cancellationToken = default)
@@ -660,7 +659,7 @@ namespace NetCore.Identity.Dapper.Store
             }
 
             var userRoles = (await _usersRolesTable.GetRolesAsync(user)).ToList();
-            return userRoles.Any(x => string.Equals(x.Name, roleName, StringComparison.InvariantCultureIgnoreCase));
+            return userRoles.Any(x => string.Equals(x.RoleName, roleName, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public Task<IList<TUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken = default)
